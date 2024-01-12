@@ -9,7 +9,7 @@ const Home = () => {
     <>
       <div>Home</div>
       <Region region={region} setRegion={setRegion}/>
-      <CountriesList searchClick={searchClick} setSearchClick={setSearchClick} />
+      <CountriesList searchClick={searchClick} setSearchClick={setSearchClick} region={region}/>
     </>
   )
 }
