@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import CountryCard from '../countryCard/CountryCard';
 
 const url = "https://restcountries.com/v3.1/all";
 
@@ -39,7 +40,7 @@ const CountriesList = ({searchClick,setSearchClick,region}) => {
   })
 
   const filteredCountriesList =filteredCountries.map((country,index)=>{
-    return (<li key={index}>{country.name.common}</li>)
+    return (<CountryCard country={country} key={index}/>)
   })
 
   return (
