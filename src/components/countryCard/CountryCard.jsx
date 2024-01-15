@@ -1,17 +1,11 @@
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-const CountryCard = ({country
-//   flag,
-//   name,
-//   population,
-//   capital,
-//   region,
-//   code,
-//   showDetails,
-}) => {
+const CountryCard = ({country}) => {
+  const navigate =useNavigate();
+
   const showDetailsHandler = () => {
-    //showDetails(code);
-    console.log('country details')
+    navigate(`/country/${country.name.common}`);
   };
   return (
     <div className="country" onClick={showDetailsHandler}>

@@ -8,6 +8,7 @@ import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
 import Root from "../root/Root";
 import ErrorPage from "../pages/error/ErrorPage";
+import Country from '../pages/country/Country';
 
 export const Router = createBrowserRouter(
   createRoutesFromElements(
@@ -15,6 +16,7 @@ export const Router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path="register" element={<Register />} />
       <Route path="login" element={<Login />} />
+      <Route path="/country/:countryName" element={<Country />} />
     </Route>
   )
   
