@@ -1,11 +1,12 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import CitiesList from "../../components/citiesList/CitiesList";
+
 
 const Country = () => {
   const params = useParams();
   const countryName = params.countryName;
-
   const [countryData, setCountryData] = useState({
     name: "",
     official: "",
@@ -17,8 +18,9 @@ const Country = () => {
     currencies: {},
     languages: [],
     borders: [],
+    code: "",
   });
-
+  
   const url = "https://restcountries.com/v3.1/name/";
 
   const fetchCountyData = async () => {
@@ -38,6 +40,7 @@ const Country = () => {
         currencies: res[0].currencies,
         languages: res[0].languages,
         borders: res[0].borders,
+        code: res[0].cca2,
       });
     } catch (error) {
       console.log("error", error);
@@ -48,6 +51,9 @@ const Country = () => {
     fetchCountyData();
   }, [countryName]);
 
+  const  countryCode = countryData.code;
+  console.log("countryCode", countryCode);
+
   let languages;
   languages = Object.values(countryData.languages);
 
@@ -56,6 +62,7 @@ const Country = () => {
 
   let currencies;
   currencies = Object.values(countryData.currencies);
+
 
   return (
     <div>
@@ -110,12 +117,12 @@ const Country = () => {
           Borders:
           {borders !== undefined &&
             countryData.borders.map((border, index) => (
-              <span key={index}>{border}</span>
+              border + `${index === languages.length - 1 ? "" : " , "} `
             ))}
         </p>
       </div>
       <div>
-        <p>Cities:</p>
+        <CitiesList countryCode={countryCode}/>
       </div>
     </div>
   );
