@@ -122,7 +122,7 @@ const Country = () => {
         </p>
       </div>
       <div>
-        <CitiesList countryCode={countryCode} countryName={countryName}/>
+       { <CitiesList countryCode={countryCode} countryName={countryName}/> }
       </div>
     </div>
   );

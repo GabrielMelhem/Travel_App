@@ -27,9 +27,9 @@ const CountriesList = ({searchClick,setSearchClick,region}) => {
     setSearchClick(!searchClick)
   }
 
-  const countriesList =countries.map((country,index)=>{
-    return (<li key={index}>{country.name.common}</li>)
-  })
+  // const countriesList =countries.map((country,index)=>{
+  //   return (<li key={index}>{country.name.common}</li>)
+  // })
 
   const filteredCountries=countries.filter((country)=>{
     if (country.region.toLowerCase().includes(region.toLowerCase())) {
