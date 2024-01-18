@@ -1,9 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const CitiesList = ({ countryCode, countryName }) => {
   // const [citiesList, setCitiesList] = useState([]);
   const [responseData, setResponseData] = useState([]);
+  const cityName="";
   console.log("country Code", countryCode);
   console.log("country Name", countryName);
 
@@ -34,12 +36,13 @@ const CitiesList = ({ countryCode, countryName }) => {
   });
   console.log("filterdResponseData", filterdResponseData);
 
+  
   const listOfCities = () => {
     if (filterdResponseData[0]) {
       return (
         <div>
           {filterdResponseData[0].cities.map((city, index) => {
-            return <li key={index}>{city}</li>;
+            return <li key={index}> <Link to={`/city/${city}`}>{city}</Link></li>;
           })}
         </div>
       );
@@ -51,6 +54,8 @@ const CitiesList = ({ countryCode, countryName }) => {
       );
     }
   };
+
+
 
   //------------------------
   // const [citiesData, setCitiesData] = useState({
