@@ -11,7 +11,7 @@ const Region = ({region, setRegion}) => {
     <>
     <div>Region</div>
     <form>
-        <select value={region} onChange={handleChange}>
+        <select name='region-select' value={region} onChange={handleChange}>
             <option value="All">All</option>
             <option value="Africa">Africa</option>
             <option value="America">America</option>

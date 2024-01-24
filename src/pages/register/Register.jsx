@@ -1,9 +1,9 @@
 import React from 'react'
 import { useContext, useState } from "react";
-// import { AuthContext } from "../../context/AuthContext"
+import { AuthContext } from "../../context/AuthContext"
 
 const Register = () => {
-  // const { register } = useContext(AuthContext);
+  const { register } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -20,7 +20,7 @@ const Register = () => {
   const handleRegister = (e) => {
     e.preventDefault();
     console.log("email, password :>> ", email, password);
-    // register(email, password);
+    register(email, password);
   };
 
   return (

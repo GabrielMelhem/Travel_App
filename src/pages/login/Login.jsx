@@ -1,9 +1,9 @@
 import React from "react";
 import { useContext, useState } from "react";
-// import { AuthContext } from "../../context/AuthContext";
+import { AuthContext } from "../../context/AuthContext";
 
 const Login = () => {
-  // const { login } = useContext(AuthContext);
+  const { login } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -19,7 +19,7 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     console.log("email, password :>> ", email, password);
-    // login(email, password);
+    login(email, password);
   };
 
   return (
@@ -29,7 +29,7 @@ const Login = () => {
         <input type="text" id="email" onChange={handleEmailChange} />
         <label htmlFor="email">Email</label>
         <input type="password" id="password" onChange={handlePasswordChange}/>
-        <label htmlFor="pssword">Password</label>
+        <label htmlFor="password">Password</label>
         <button type="submit">Login</button>
       </form>
     </>
