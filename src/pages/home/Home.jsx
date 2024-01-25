@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import Region from '../../components/region/Region'
 import CountriesList from '../../components/countriesList/CountriesList';
 import { AuthContext } from '../../context/AuthContext';
-import Weather from '../../components/weather/Weather';
+
 
 const Home = () => {
   const {user} = useContext(AuthContext);
@@ -17,7 +17,7 @@ const Home = () => {
       <Region region={region} setRegion={setRegion}/>
       <CountriesList searchClick={searchClick} setSearchClick={setSearchClick} region={region}/>
 
-      <Weather />
+      
     </>
   )
 }
