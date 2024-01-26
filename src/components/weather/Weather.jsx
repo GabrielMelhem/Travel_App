@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const Weather = () => {
-  const [city, setCity] = useState("");
+const Weather = ({cityName}) => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [weatherData, setWeatherData] = useState(null);
@@ -11,7 +10,7 @@ const Weather = () => {
   const fetchWeatherData = async () => {
     try {
       const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`
+        `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}`
       );
 
       if (!response.ok) {
@@ -19,16 +18,17 @@ const Weather = () => {
       }
       const data = await response.json();
       setWeatherData(data);
+      console.log('weatherData',weatherData)
     } catch (error) {
       console.error("Error fetching weather data:", error.message);
     }
   };
 
   useEffect(() => {
-    if (city) {
+    if (cityName) {
       fetchWeatherData();
     }
-  }, [city]);
+  }, [cityName]);
 
   const filterWeatherByDate = () => {
     if (weatherData && startDate && endDate) {
@@ -46,14 +46,7 @@ const Weather = () => {
   return (
     <>
       <div>Weather</div>
-      <label>
-        Enter city:
-        <input
-          type="text"
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-        />
-      </label>
+      
       <label>
         Enter start date (YYYY-MM-DD):
         <input
@@ -74,7 +67,7 @@ const Weather = () => {
       {weatherData && startDate && endDate && (
         <div>
           <h2>
-            Weather Forecast for {city} from {startDate} to {endDate}
+            Weather Forecast for {cityName} from {startDate} to {endDate}
           </h2>
           <ul>
             {filterWeatherByDate().map((item, index) => (
