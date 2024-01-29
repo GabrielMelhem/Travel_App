@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import CountryCard from '../countryCard/CountryCard';
+import { Grid } from '@mui/material';
 
 const url = "https://restcountries.com/v3.1/all";
 
@@ -21,7 +22,7 @@ const CountriesList = ({searchClick,setSearchClick,region}) => {
   }
   useEffect(()=>{
     fetchCountriesList();
-  },[searchClick]);
+  },[region]);
 
   const handleClick =()=>{
     setSearchClick(!searchClick)
@@ -40,15 +41,23 @@ const CountriesList = ({searchClick,setSearchClick,region}) => {
   })
 
   const filteredCountriesList =filteredCountries.map((country,index)=>{
-    return (<CountryCard country={country} key={index}/>)
+    return (
+      <Grid container spacing={4}>
+        <Grid item xs={2} sm={6} md={4} >
+        <CountryCard country={country} key={index}/>
+        </Grid>
+        
+      </Grid>
+    )
   })
 
   return (
     <>
       <div>CountriesList</div>
-      <button onClick={handleClick}>search</button>
+      
+      {/* <button onClick={handleClick}>search</button> */}
       {/* {searchClick && countriesList} */}
-      {searchClick && filteredCountriesList}
+      {region && filteredCountriesList}
       {console.log('filteredCounties',filteredCountries)}
     </>
     
