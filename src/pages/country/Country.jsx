@@ -1,8 +1,8 @@
 import React from "react";
-import { useParams,useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import CitiesList from "../../components/citiesList/CitiesList";
-
+import "./country.css";
 
 const Country = () => {
   const params = useParams();
@@ -20,7 +20,7 @@ const Country = () => {
     borders: [],
     code: "",
   });
-  
+
   const url = "https://restcountries.com/v3.1/name/";
 
   const fetchCountyData = async () => {
@@ -51,7 +51,7 @@ const Country = () => {
     fetchCountyData();
   }, [countryName]);
 
-  const  countryCode = countryData.code;
+  const countryCode = countryData.code;
   console.log("countryCode", countryCode);
 
   let languages;
@@ -63,68 +63,73 @@ const Country = () => {
   let currencies;
   currencies = Object.values(countryData.currencies);
 
-
   return (
-    <div>
-      <div>
-        <img src={countryData.flagImg} alt="Country Flag" />
+    <>
+      <div className="country-details-body">
+        <div className="img-container">
+          <img src={countryData.flagImg} alt="Country Flag" />
+        </div>
+        <div className="country-details-content">
+          <div className="country-details-name">
+            <h2>{countryName}</h2>
+          </div>
+          <div className="country-details-info">
+            <section>
+              <p>
+                Official Name: <span>{countryData.official}</span>
+              </p>
+              <p>
+                Population: <span>{countryData.population}</span>
+              </p>
+              <p>
+                Region: <span>{countryData.region}</span>
+              </p>
+              <p>
+                Sub Region: <span>{countryData.subregion}</span>
+              </p>
+              <p>
+                Capital: <span>{countryData.capital}</span>
+              </p>
+            </section>
+            <section>
+              <p>
+                Currencies:{" "}
+                <span>
+                  {currencies?.map(
+                    (currency, index) =>
+                      currency.name +
+                      `${index === currencies.length - 1 ? "" : " , "} `
+                  )}
+                </span>
+              </p>
+              <p>
+                Languages:{" "}
+                <span>
+                  {languages?.map(
+                    (language, index) =>
+                      language +
+                      `${index === languages.length - 1 ? "" : " , "} `
+                  )}
+                </span>
+              </p>
+            </section>
+          </div>
+          <div>
+            <p>
+              Borders:{" "}
+              {borders !== undefined &&
+                countryData.borders.map(
+                  (border, index) =>
+                    border + `${index === borders.length - 1 ? "" : " , "} `
+                )}
+            </p>
+          </div>
+        </div>
       </div>
       <div>
-        <h2>{countryName}</h2>
+        {<CitiesList countryCode={countryCode} countryName={countryName} />}
       </div>
-      <div>
-        <section>
-          <p>
-            Official Name: <span>{countryData.official}</span>
-          </p>
-          <p>
-            Population: <span>{countryData.population}</span>
-          </p>
-          <p>
-            Region: <span>{countryData.region}</span>
-          </p>
-          <p>
-            Sub Region: <span>{countryData.subregion}</span>
-          </p>
-          <p>
-            Capital: <span>{countryData.capital}</span>
-          </p>
-        </section>
-        <section>
-          <p>
-            Currencies:{" "}
-            <span>
-              {currencies?.map(
-                (currency, index) =>
-                  currency.name +
-                  `${index === currencies.length - 1 ? "" : " , "} `
-              )}
-            </span>
-          </p>
-          <p>
-            Languages:{" "}
-            <span>
-              {languages?.map(
-                (language, index) =>
-                  language + `${index === languages.length - 1 ? "" : " , "} `
-              )}
-            </span>
-          </p>
-        </section>
-      </div>
-      <div>
-        <p>
-          Borders:
-          {borders !== undefined &&
-            countryData.borders.map((border, index) => (
-              border + `${index === languages.length - 1 ? "" : " , "} `
-            ))}
-        </p>
-      </div>
-      <div>
-       { <CitiesList countryCode={countryCode} countryName={countryName}/> }
-      </div>
-    </div>
+    </>
   );
 };
 
