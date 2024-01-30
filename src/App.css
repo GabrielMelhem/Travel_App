@@ -1,4 +1,4 @@
-* {
+/* * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -7,7 +7,7 @@
   }
 
 .country {
-    /* border: 1px solid red; */
+     border: 1px solid red; 
     width: 300px;
     margin: 10px;
     margin-bottom: 55px;
@@ -36,4 +36,9 @@
     padding: 0;
     transition: all 0.1s ease-in-out;
     object-fit: cover;
+  } */
+   
+  * {
+  margin: 0;
+  padding: 0;
   }

@@ -1,67 +1,58 @@
-import React, { useEffect, useState } from 'react'
-import CountryCard from '../countryCard/CountryCard';
-import { Grid } from '@mui/material';
+import React, { useEffect, useState } from "react";
+import CountryCard from "../countryCard/CountryCard";
+import "./countiesList.css";
 
 const url = "https://restcountries.com/v3.1/all";
 
-const CountriesList = ({searchClick,setSearchClick,region}) => {
-  const [countries,setCountries]=useState([]);
-  let response=[];
+const CountriesList = ({ searchClick, setSearchClick, region }) => {
+  const [countries, setCountries] = useState([]);
+  let response = [];
 
-  const fetchCountriesList = async()=>{
+  const fetchCountriesList = async () => {
     try {
-      response=await fetch(url).then((res)=>{
+      response = await fetch(url).then((res) => {
         return res.json();
-      })
-      console.log('countriesList', response);
+      });
+      console.log("countriesList", response);
       setCountries(response);
-      console.log('countries',countries)
+      console.log("countries", countries);
     } catch (error) {
-      console.log('error',error)
+      console.log("error", error);
     }
-  }
-  useEffect(()=>{
+  };
+  useEffect(() => {
     fetchCountriesList();
-  },[region]);
+  }, [region]);
 
-  const handleClick =()=>{
-    setSearchClick(!searchClick)
-  }
+  const handleClick = () => {
+    setSearchClick(!searchClick);
+  };
 
-  // const countriesList =countries.map((country,index)=>{
-  //   return (<li key={index}>{country.name.common}</li>)
-  // })
+  const allCountriesList = countries.map((country, index) => {
+    return <CountryCard key={index} country={country} />;
+  });
 
-  const filteredCountries=countries.filter((country)=>{
+  const filteredCountries = countries.filter((country) => {
     if (country.region.toLowerCase().includes(region.toLowerCase())) {
       return true;
     } else {
       return false;
     }
-  })
-
-  const filteredCountriesList =filteredCountries.map((country,index)=>{
-    return (
-      <Grid container spacing={4}>
-        <Grid item xs={2} sm={6} md={4} >
-        <CountryCard country={country} key={index}/>
-        </Grid>
-        
-      </Grid>
-    )
-  })
+  });
+  const filteredCountriesList = filteredCountries.map((country, index) => {
+    return <CountryCard key={index} country={country} />;
+  });
 
   return (
     <>
-      <div>CountriesList</div>
-      
-      {/* <button onClick={handleClick}>search</button> */}
-      {/* {searchClick && countriesList} */}
-      {region && filteredCountriesList}
-      {console.log('filteredCounties',filteredCountries)}
-    </>
-    
-  )
-}
+      {region.toLowerCase() === "all"
+        ? allCountriesList
+        : filteredCountriesList}
 
-export default CountriesList
+      {console.log("filteredCounties", filteredCountries)}
+      {console.log("allCountiesList", allCountriesList)}
+    </>
+  );
+};
+
+export default CountriesList;

@@ -1,6 +1,7 @@
 import React from "react";
 import { FormControl, InputLabel,MenuItem } from "@mui/material";
 import Select from '@mui/material/Select'; 
+import "./region.css"
 
 const Region = ({ region, setRegion }) => {
   const handleChange = (e) => {
@@ -8,9 +9,9 @@ const Region = ({ region, setRegion }) => {
     console.log("region", region);
   };
   return (
-    <>
+    <div className="region">
       {/* <div>Region</div> */}
-      <FormControl sx={{ m: 1, minWidth: 120 }}>
+      <FormControl sx={{ m: 1, minWidth: 120 }} >
         <InputLabel id="demo-simple-select-autowidth-label">Region</InputLabel>
         <Select
           labelId="demo-simple-select-autowidth-label"
@@ -42,7 +43,7 @@ const Region = ({ region, setRegion }) => {
             <option value="Oceania">Oceania</option>
           </select>
         </form> */}
-    </>
+    </div>
   );
 };
 

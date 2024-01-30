@@ -6,6 +6,7 @@ import {
   CardMedia,
   Typography,
   CardActionArea,
+  Grid,
 } from "@mui/material";
 
 const CountryCard = ({ country }) => {
@@ -16,32 +17,32 @@ const CountryCard = ({ country }) => {
   };
   return (
     <>
-    
+    <Grid item xs={3} md={2.4} lg={2}>
       <Card sx={{ maxWidth: 345 }} onClick={showDetailsHandler}>
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            height="140"
-            image={country.flags.svg}
-            alt="Country Flag"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              {country.name.common}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Population: {country.population}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Capital: {country.capital}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Region: {country.region}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-      </Card>
-
+            <CardActionArea>
+              <CardMedia
+                component="img"
+                height="140"
+                image={country.flags.svg}
+                alt="Country Flag"
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  {country.name.common}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Population: {country.population}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Capital: {country.capital}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Region: {country.region}
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+          </Grid>
 
       {/* <div className="country" onClick={showDetailsHandler}>
       <picture>
